@@ -1,0 +1,27 @@
+<h1>Testing.</h1>
+
+
+<h1 class="bold">Latest Posts:</h1>
+<br>
+
+  <% @posts.each do |post| %>
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= link_to post.title, post_path(post) %></h3>
+        <p><%= link_to 'Edit', edit_post_path(post) %> | <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+
+      </div>
+      <div class="panel-body">
+
+
+           <%= link_to ('<span class="glyphicon glyphicon-trash"></span>').html_safe, post_path(post),
+                      :data => {:confirm => "You sure?",
+                      :method => 'delete'} %>
+
+
+      </div>
+    </div>
+  </div>
+  <% end %>
+<%= link_to "Make a new post", new_post_path %>
