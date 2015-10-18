@@ -1,3 +1,6 @@
 <h1><%= @post.title %></h1>
 
 <h2><%= @post.content %></h2>
+
+
+<%= link_to 'Add a tag to this post', new_post_tag_path(@post) %>

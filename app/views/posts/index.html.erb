@@ -18,10 +18,20 @@
            <%= link_to ('<span class="glyphicon glyphicon-trash"></span>').html_safe, post_path(post),
                       :data => {:confirm => "You sure?",
                       :method => 'delete'} %>
-
-
       </div>
     </div>
   </div>
   <% end %>
 <%= link_to "Make a new post", new_post_path %>
+
+<div class="col-md-4">
+  <p>
+    <h3>search for posts by tag</h3>
+    <ul>
+      <% @tags.each do |tag| %>
+        <li><%= link_to tag.name, tag %></li>
+        <% end %>
+      </ul>
+    <br>
+  </p>
+</div>

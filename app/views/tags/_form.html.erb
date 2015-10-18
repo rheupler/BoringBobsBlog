@@ -1,0 +1,5 @@
+<%= form_for [@post, @tag] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <button type="submit" class="btn btn-xs btn-success">Submit</button>
+<% end %>

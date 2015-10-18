@@ -2,12 +2,17 @@ class TagsController < ApplicationController
 
   def index
     @tags = Tag.all
+
   end
 
   def show
+    @post = Post.find(params[:id])
+    @tag = Tag.new
+    @tags = @post.tags.all
   end
 
   def new
+    @post = Post.find(params[:id])
     @tag = Tag.new
   end
 
@@ -15,10 +20,10 @@ class TagsController < ApplicationController
   end
 
   def create
-    @tag = Tag.new(tag_params)
-
+    @post = Post.find(params[:id])
+    @tag = @post.tags.new(tag_params)
     if @tag.save
-      redirect_to @tag, notice: 'Tag was successfully created.'
+      redirect_to post_path(@post)
     else
       render :new
     end
@@ -38,10 +43,6 @@ class TagsController < ApplicationController
   end
 
   private
-    def set_tag
-      @tag = Tag.find(params[:id])
-    end
-
     def tag_params
       params.require(:tag).permit(:name)
     end
