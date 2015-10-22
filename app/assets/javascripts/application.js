@@ -14,10 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery.turbolinks
 
 $(function() {
   $("#tagList").hide();
-
   $('.tagShow').click(function() {
     $("#tagList").toggle();
   });

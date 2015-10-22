@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -15,7 +16,21 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <nav class="navbar navbar-inverse">
+  <div id='cssmenu'>
+    <ul>
+      <li class='active'><a href='#'><span>Home</span></a></li>
+      <% if user_signed_in? %>
+        <li class='right'><%= link_to current_user.email, edit_user_registration_path %></li>
+
+        <li class='right'><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+      </ul>
+    <% else %>
+    <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+    <li><%= link_to "Log In", new_user_session_path %></li>
+    <% end %>
+    </ul>
+  </div>
+  <!-- <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -48,7 +63,7 @@
     </ul>
   </div>
 </div>
-</nav>
+</nav> -->
 
   <% if notice %>
   <p class='alert alert-success'><%= notice %></p>

@@ -2,6 +2,8 @@
 <br>
 <h4><%= @post.content %></h4>
 
+<img src="<%= @post.image %>" width="500px" alt="" />
+
 <% @post.tags.each do |tag| %>
 <%= tag.name %> <%= link_to 'Edit', edit_post_tag_path(@post, tag) %> <%= link_to 'Delete', post_tag_path(@post, tag), data: {confirm: "Are you sure?", method: "delete"}%></li>
 <% end %>
