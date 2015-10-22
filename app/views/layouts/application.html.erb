@@ -76,8 +76,10 @@
   <%= yield %>
 </div>
 
-<div id='cssmenu'>
-  <h3 class="cssmenu bottom navbar-text navbar-fixed-bottom"><%= link_to "Make a new post", new_post_path %></h3>
-</div>
+<% if user_signed_in? %>
+  <div id='cssmenu'>
+    <h1 class="cssmenu bottom navbar-text navbar-fixed-bottom"><%= link_to "Make a new post", new_post_path %></h1>
+  </div>
+<% end %>
   </body>
 </html>
