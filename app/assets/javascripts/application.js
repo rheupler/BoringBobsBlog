@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $("#tagList").hide();
+
+  $('.tagShow').click(function() {
+    $("#tagList").toggle();
+  });
+});
