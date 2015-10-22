@@ -1,5 +1,24 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<center><h2>Edit <%= resource_name.to_s.humanize %></h2>
 
+<h2 id="show">Click here to see posts you have commented on:</h3>
+  <div class='showComments'>
+
+    <% if current_user.comments.any? %>
+    <% current_user.comments.each do |comment| %>
+    <ul class='showComments'>
+      <li><%= link_to comment.post.title, post_path(comment.post_id) %>
+        <br>
+        &nbsp;&nbsp;&nbsp;<%= comment.sentence %>
+      </ul>
+      <% end %>
+      <% else %>
+      <h4>You haven't contributed anything yet :(</h4>
+      <% end %>
+    </div>
+
+<br>
+<br>
+<br>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
@@ -34,6 +53,8 @@
 
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? <p><%= link_to ('<button class="btn btn-danger">Delete account</button>').html_safe, registration_path(resource_name),
+:data => {:confirm => "Are you sure? :(",
+  :method => 'delete'} %></p>
 
 <%= link_to "Back", :back %>
