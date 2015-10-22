@@ -4,5 +4,12 @@ Rails.application.routes.draw do
     resources :tags
   end
   resources :tags
+  resources :posts do
+    resources :comments
+  end
+  resources :users do
+    resources :comments
+  end
+  
   root 'posts#index'
 end

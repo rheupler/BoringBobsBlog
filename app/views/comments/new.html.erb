@@ -1,0 +1,16 @@
+<div class="new-contribution-form">
+  <% if user_signed_in? %>
+  <h2>Comment:</h2>
+
+  <%= render 'form' %>
+  <br>
+  <a href="javascript:history.back()"><button class="btn btn-warning">Cancel</button></a>
+
+
+  <% else %>
+
+  <h2>You must sign in to comment on this post.</h2>
+
+  <% end %>
+
+</div>

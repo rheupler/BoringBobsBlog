@@ -24,3 +24,33 @@
     <br>
   <h4><%= @post.content %></h4>
 </div>
+
+<div class='col-md-12'>
+
+<center><h3><%= link_to "Leave a comment", new_post_comment_path(@post) %></h3>
+  
+<% if @post.comments.any? %>
+<% @post.comments.each do |comment| %>
+<div class="col-md-12">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      Added by <%= User.find(comment.user_id).email %> on <%= comment.created_at.strftime("%m/%d/%Y")%>
+      <% if current_user && current_user.id == comment.user_id %>
+      | <%= link_to "Delete", post_comment_path(@post, comment),
+      :data => {:confirm => "You sure?",
+        :method => 'delete'} %>
+        <% end %>
+    </div>
+    <div class="panel-body">
+
+        <h3 class="panel-title"><%= comment.sentence %></h3>
+
+
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <% else %>
+  <h2>There are no comments yet!</h2>
+  <% end %>
+</div>
