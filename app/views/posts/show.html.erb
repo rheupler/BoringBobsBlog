@@ -1,19 +1,15 @@
 <h1><%= @post.title %></h1>
+<br>
+<h4><%= @post.content %></h4>
 
-<h2><%= @post.content %></h2>
-
-<% if @post.tags.any? %>
-  <% @tags.each do |tag| %>
-  <h3 class="panel-title"><%= link_to tag.name, tag_path(tag) %></h3>
-  <p><%= link_to 'Edit', edit_tag_path(tag) %> | <%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-
-
-  <div class="panel-body">
-    <%= link_to ('<span class="glyphicon glyphicon-trash"></span>').html_safe, tag_path(tag),
-                                                :data => {:confirm => "You sure?",
-                                                          :method => 'delete'} %>
-  <% end %>
-
-<% else %>
-  <%= link_to 'Add a tag to this post', new_post_tag_path(@post) %>
+<% @post.tags.each do |tag| %>
+<%= tag.name %> <%= link_to 'Edit', edit_post_tag_path(@post, tag) %> <%= link_to 'Delete', post_tag_path(@post, tag), data: {confirm: "Are you sure?", method: "delete"}%></li>
 <% end %>
+
+<br>
+
+<%= link_to 'New Tag', new_post_tag_path(@post) %>
+
+<%= link_to 'Edit', edit_post_path(@post) %>
+
+<%= link_to 'Delete', post_path(@post), data: {confirm: "Are You Sure?", method: "delete"}%>

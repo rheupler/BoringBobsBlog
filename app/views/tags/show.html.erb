@@ -1,0 +1,6 @@
+<% @tag.posts.each do |post| %>
+<%= link_to post.title, post_path(post) %>
+<% end %>
+<br><br>
+
+<%= link_to 'Delete', tag_path(@tag), data: {confirm: "Are you sure?", method: "delete"}%></li>

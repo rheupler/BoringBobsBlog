@@ -7,7 +7,7 @@ class TagsController < ApplicationController
   def show
     @post = Post.find(params[:post_id])
     @tags = @post.tags.all
-    @tag = Tag.new
+    @tag = Tag.find(params[:id])
   end
 
   def new
@@ -20,7 +20,8 @@ class TagsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @tag = Tag.new(tag_params)
+    @tag = @post.tags.new(tag_params)
+    @post.tags.push(@tag)
     if @tag.save
       redirect_to post_path(@post)
     else
@@ -43,6 +44,6 @@ class TagsController < ApplicationController
 
   private
     def tag_params
-      params.require(:tag).permit(:name)
+      params.require(:tag).permit(:name, :post_id)
     end
 end
