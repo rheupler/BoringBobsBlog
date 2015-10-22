@@ -2,17 +2,16 @@ class TagsController < ApplicationController
 
   def index
     @tags = Tag.all
-
   end
 
   def show
-    @post = Post.find(params[:id])
-    @tag = Tag.new
+    @post = Post.find(params[:post_id])
     @tags = @post.tags.all
+    @tag = Tag.new
   end
 
   def new
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:post_id])
     @tag = Tag.new
   end
 
@@ -20,8 +19,8 @@ class TagsController < ApplicationController
   end
 
   def create
-    @post = Post.find(params[:id])
-    @tag = @post.tags.new(tag_params)
+    @post = Post.find(params[:post_id])
+    @tag = Tag.new(tag_params)
     if @tag.save
       redirect_to post_path(@post)
     else
