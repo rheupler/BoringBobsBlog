@@ -6,16 +6,17 @@
 
 <% @posts.each do |post| %>
 <div class="col-md-4">
-  <div class="panel panel-info">
+  <div class="thumbnail">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= link_to post.title, post_path(post) %></h3>
-      <p><%= link_to 'Edit', edit_post_path(post) %> | <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      <h2 class='panelCenter'><%= link_to post.title, post_path(post) %></h2>
+      <h3>Preview of post</h3>
+        <!-- <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p> -->
 
     </div>
     <div class="panel-body">
-       <%= link_to ('<span class="glyphicon glyphicon-trash"></span>').html_safe, post_path(post),
-                    :data => {:confirm => "You sure?",
-                    :method => 'delete'} %>
+        <p class='panelCenter'><%= link_to link_to ('<span class="glyphicon glyphicon-pencil"></span>').html_safe, edit_post_path(post) %> | <%= link_to ('<span class="glyphicon glyphicon-trash"></span>').html_safe, post_path(post),
+        :data => {:confirm => "You sure?",
+          :method => 'delete'} %></p>
     </div>
   </div>
 </div>

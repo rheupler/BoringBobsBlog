@@ -16,9 +16,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id='cssmenu'>
+  <div class='cssmenu'>
     <ul>
-      <li class='active'><a href='#'><span>Home</span></a></li>
+      <li class='active'><a href='/'><span>Home</span></a></li>
       <% if user_signed_in? %>
         <li class='right'><%= link_to current_user.email, edit_user_registration_path %></li>
 
@@ -75,6 +75,9 @@
 <div class="container">
   <%= yield %>
 </div>
-  <h2 class="bottom navbar-text navbar-fixed-bottom"><%= link_to "Make a new post", new_post_path %></h2>
+
+<div id='cssmenu'>
+  <h3 class="cssmenu bottom navbar-text navbar-fixed-bottom"><%= link_to "Make a new post", new_post_path %></h3>
+</div>
   </body>
 </html>
